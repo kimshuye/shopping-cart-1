@@ -34,16 +34,24 @@ services:
     ports:
       - "3306:3306"
 
-  store-web:
-    image: sckseal/toy-store-web:0.0.1
-    container_name: store-web
+  # store-web:
+  #   image: sckseal/toy-store-web:0.0.1
+  #   container_name: store-web
+  #   build:
+  #     context: front-end
+  #   ports:
+  #     - "3000:3000"
+
+  store-web-vue:
+    # image: sckseal/toy-store-web-vue:0.0.1
+    container_name: store-web-vue
     build:
-      context: front-end
-    ports:
-      - "3000:3000"
+      context: store-web-vue
+    # ports:
+    #   - "8080:80"
 
   store-nginx:
-    image: sckseal/toy-store-nginx:0.0.1
+    # image: sckseal/toy-store-nginx:0.0.1
     container_name: store-nginx
     restart: always
     build:
@@ -51,7 +59,8 @@ services:
       dockerfile: Dockerfile.nginx
     depends_on:
       - store-service
-      - store-web
+      # - store-web
+      - store-web-vue
     ports:
       - "80:80"
 

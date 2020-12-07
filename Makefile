@@ -1,4 +1,5 @@
 frontend: install_dependency_frontend code_analysis_frontend run_unittest_frontend build_frontend
+frontend_vue: install_dependency_frontend_vue code_analysis_frontend_vue run_unittest_frontend_vue build_frontend_vue
 backend: code_analysis_backend run_unittest_backend run_integratetest_backend build_backend start_service run_newman stop_service
 
 run_robot: 
@@ -20,6 +21,21 @@ run_unittest_frontend:
 
 build_frontend:
 	docker-compose build store-web
+
+
+install_dependency_frontend_vue:
+	cd store-web-vue && npm install
+
+code_analysis_frontend_vue:
+	cd store-web-vue && npm run lint
+
+run_unittest_frontend_vue:
+	cd store-web-vue && npm run test:unit
+
+build_frontend_vue:
+	docker-compose build store-web-vue
+
+
 
 code_analysis_backend:
 	cd store-service && go vet ./...
