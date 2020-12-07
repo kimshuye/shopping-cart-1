@@ -2,7 +2,7 @@
 Feature : Product list
 
 เข้าสุ่ url ที่ /Product-list
-จะเจอหน้า และข้อความ Select Toy ,id=product-list
+จะเจอหน้า และข้อความ Toys ,id=productList
 
 หน้านี้ ประกอบไปด้วย
 

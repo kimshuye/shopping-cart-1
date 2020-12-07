@@ -1,5 +1,5 @@
 *** Variable ***
-${url}   http://localhost/Product-list
+${url}   http://localhost/#/products
 
 *** Keywords ***
 ดูรายละเอียดสินค้า
