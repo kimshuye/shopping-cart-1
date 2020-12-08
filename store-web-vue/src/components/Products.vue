@@ -7,6 +7,7 @@
             <label for="inputAge">Select age</label>
             <select id="inputAge" v-model="selected">
                 <option value="aSelect">Choose</option>
+                <option value="a3">1-2 y</option>
             </select>
         </div>
         <div>

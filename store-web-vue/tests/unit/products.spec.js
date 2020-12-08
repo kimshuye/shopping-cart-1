@@ -38,9 +38,9 @@ describe('Products', () => {
 
     const wrapper = mount(Products)
     const select = wrapper.find('#inputAge')
-    // await select.setValue(valueAge)
+    await select.setValue(valueAge)
 
-    expect(valueAge).toBe(expectValueAge)
+    expect(select.element.value).toBe(expectValueAge)
   })
 
   it('Change Option age by text is less 6 m', async () => {
