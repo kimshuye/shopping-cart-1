@@ -4,6 +4,9 @@ import Products from '@/components/Products.vue'
 // import router, { routes } from '@/router/index'
 
 describe('Products', () => {
+
+  const selectAgeId = "inputAge"
+  
   it('Render Products page', () => {
     const expectLabelToy = 'Toys'
 
@@ -17,39 +20,43 @@ describe('Products', () => {
 
     const wrapper = mount(Products)
 
-    expect(wrapper.find('[for="inputAge"]').text()).toBe(expectSelectAge)
+    expect(wrapper.find(`[for="${selectAgeId}"]`).text()).toBe(expectSelectAge)
   })
 
   it('Create Option age Default is Choose', async () => {
+    const expectValueAge = 'aSelect'
     const expectTextAge = 'Choose'
-    const valueAge = 'aSelect'
 
     const wrapper = mount(Products)
-    const select = wrapper.find('#inputAge')
-    await select.setValue(valueAge)
+    const select = wrapper.find(`#${selectAgeId}`)
+    await select.setValue(expectValueAge)
 
+    expect(select.find('option:checked').element.value).toBe(expectValueAge)
     expect(select.find('option:checked').element.text).toBe(expectTextAge)
   })
 
   it('Change Option age by value is a3', async () => {
     const expectValueAge = 'a3'
-    const valueAge = 'a3'
+    const expectTextAge = '1-2 y'
 
     const wrapper = mount(Products)
-    const select = wrapper.find('#inputAge')
-    await select.setValue(valueAge)
+    const select = wrapper.find(`#${selectAgeId}`)
+    await select.setValue(expectValueAge)
 
     expect(select.element.value).toBe(expectValueAge)
+    expect(select.find('option:checked').element.text).toBe(expectTextAge)
   })
 
   it('Change Option age by text is less 6 m', async () => {
+    const expectValueAge = 'a1'
     const expectTextAge = 'less 6 m'
-    const valueAge = 'a1'
 
     const wrapper = mount(Products)
-    const selected = wrapper.find(`option[value="${valueAge}"]`)
-    await selected.setChecked()
+    const select = wrapper.find(`#${selectAgeId}`)
+    await select.setValue(expectValueAge)
 
-    expect(selected.element.text).toBe(expectTextAge)
+    expect(select.element.value).toBe(expectValueAge)
+    expect(select.find('option:checked').element.text).toBe(expectTextAge)
+    expect(select.find('option:checked').element.selected).toBe(true)
   })
 })
