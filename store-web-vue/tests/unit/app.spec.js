@@ -1,8 +1,6 @@
 import { mount } from '@vue/test-utils'
 
 import App from '@/App.vue'
-import router from '@/router/index.js'
-import Products from '@/components/Products.vue'
 
 describe('Products', () => {
   it('renders a child component via routing', async () => {
@@ -12,10 +10,8 @@ describe('Products', () => {
   })
 
   it('triggers a click to link products', async () => {
-    
     const wrapper = mount(App)
 
-    await wrapper.find('[to="/products"]').trigger("click");
-    
+    await wrapper.find('[to="/products"]').trigger('click')
   })
 })

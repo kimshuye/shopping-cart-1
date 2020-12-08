@@ -29,7 +29,6 @@ describe('Products', () => {
     await select.setValue(valueAge)
 
     expect(select.find('option:checked').element.text).toBe(expectTextAge)
-
   })
 
   it('Change Option age by value is a3', async () => {
@@ -49,11 +48,8 @@ describe('Products', () => {
 
     const wrapper = mount(Products)
     const selected = wrapper.find(`option[value="${valueAge}"]`)
-    // await selected.setChecked()
+    await selected.setChecked()
 
-    expect(expectTextAge).toBe(expectTextAge)
+    expect(selected.element.text).toBe(expectTextAge)
   })
-
-
-
 })
