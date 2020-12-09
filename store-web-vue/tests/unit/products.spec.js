@@ -4,8 +4,7 @@ import Products from '@/components/Products.vue'
 // import router, { routes } from '@/router/index'
 
 describe('Products', () => {
-
-  const selectAgeId = "inputAge"
+  const selectAgeId = 'inputAge'
 
   it('Render Products page', () => {
     const expectLabelToy = 'Toys'
@@ -29,7 +28,7 @@ describe('Products', () => {
 
     const wrapper = mount(Products)
     const select = wrapper.find(`#${selectAgeId}`)
-    const selected = wrapper.find(`option:checked`)
+    const selected = wrapper.find('option:checked')
 
     expect(select.element.value).toBe(expectValueAge)
     expect(select.find('option[disabled]').element.text).toBe(expectTextAge)
