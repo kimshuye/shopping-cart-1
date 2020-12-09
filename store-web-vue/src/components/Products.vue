@@ -9,7 +9,7 @@
             <div class="col">
                 <label for="inputAge">Select age</label>&nbsp;
                 <select id="inputAge" >
-                    <option value="aSelect" disabled="disabled" >Choose</option>
+                    <option value="aSelect" disabled="disabled" selected="selected" >Choose</option>
                     <option value="a1">less 6 m</option>
                     <option value="a2">7-12 m</option>
                     <option value="a3">1-2 y</option>
