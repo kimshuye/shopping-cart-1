@@ -24,33 +24,30 @@ describe('Products', () => {
     expect(wrapper.find(`[for="${selectAgeId}"]`).text()).toBe(expectSelectAge)
   })
 
-  // it('Create selectedAge member Products Component', async () => {
-  //   const expectValueAge = 'aSelect'
-
-  //   const localVue = createLocalVue()
-  //   localVue.use(router)
-  //   const wrapper = shallowMount(Products, {
-  //     localVue,
-  //     mocks: { selectedAge: expectValueAge }
-  //   })
-  //   expect(wrapper.vm.selectedAge).toBe(expectValueAge)
-
-  //   const freshWrapper = shallowMount(Products)
-  //   expect(freshWrapper.vm.selectedAge).toBe(expectValueAge)
-  // })
-
-  it('Create Option age Default is Choose', async () => {
+  it('Create selectedAge member Products Component', async () => {
     const expectValueAge = 'aSelect'
-    const expectTextAge = 'Choose'
 
-    const wrapper = mount(Products)
-    const select = wrapper.find(`#${selectAgeId}`)
-    const selected = wrapper.find('option:checked')
-
-    expect(select.element.value).toBe(expectValueAge)
-    expect(select.find('option[disabled]').element.text).toBe(expectTextAge)
-    expect(selected.element.selected).toBe(true)
+    const localVue = createLocalVue()
+    localVue.use(router)
+    const wrapper = shallowMount(Products, {
+      localVue,
+      mocks: { selectedAge: expectValueAge }
+    })
+    expect(wrapper.vm.selectedAge).toBe(expectValueAge)
   })
+
+  // it('Create Option age Default is Choose', async () => {
+  //   const expectValueAge = 'aSelect'
+  //   const expectTextAge = 'Choose'
+
+  //   const wrapper = mount(Products)
+  //   const select = wrapper.find(`#${selectAgeId}`)
+  //   const selected = wrapper.find('option:checked')
+
+  //   expect(select.element.value).toBe(expectValueAge)
+  //   expect(select.find('option[disabled]').element.text).toBe(expectTextAge)
+  //   expect(selected.element.selected).toBe(true)
+  // })
 
   // it('is hidden when onInit is called', () => {
   //   const expectValueAge = 'aSelect'
