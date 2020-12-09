@@ -32,6 +32,9 @@ code_analysis_frontend_vue:
 run_unittest_frontend_vue:
 	cd store-web-vue && npm run test:unit
 
+run_unittest_watch_frontend_vue:
+	cd store-web-vue && npm run test:unit:watch
+
 build_frontend_vue:
 	docker-compose build store-web-vue
 

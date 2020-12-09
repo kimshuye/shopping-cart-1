@@ -6,7 +6,7 @@ import Products from '@/components/Products.vue'
 describe('Products', () => {
 
   const selectAgeId = "inputAge"
-  
+
   it('Render Products page', () => {
     const expectLabelToy = 'Toys'
 
@@ -29,10 +29,11 @@ describe('Products', () => {
 
     const wrapper = mount(Products)
     const select = wrapper.find(`#${selectAgeId}`)
-    await select.setValue(expectValueAge)
+    const selected = wrapper.find(`option:checked`)
 
-    expect(select.find('option:checked').element.value).toBe(expectValueAge)
-    expect(select.find('option:checked').element.text).toBe(expectTextAge)
+    expect(select.element.value).toBe(expectValueAge)
+    expect(select.find('option[disabled]').element.text).toBe(expectTextAge)
+    expect(selected.element.selected).toBe(true)
   })
 
   it('Change Option age by value is a3', async () => {

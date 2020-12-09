@@ -6,7 +6,7 @@
         <div>
             <label for="inputAge">Select age</label>
             <select id="inputAge" v-model="selected">
-                <option value="aSelect">Choose</option>
+                <option value="aSelect" disabled="disabled" >Choose</option>
                 <option value="a1">less 6 m</option>
                 <option value="a3">1-2 y</option>
             </select>
@@ -19,7 +19,13 @@
 
 <script>
 export default {
-  name: 'Products'
+  name: 'Products',
+  data () {
+    return {
+      selected: 'aSelect'
+    }
+  }
+
 }
 </script>
 
