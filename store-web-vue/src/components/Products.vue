@@ -32,17 +32,14 @@ export default {
   name: 'Products',
   data () {
     return {
-      // selectedAge: ''
+      selectedAge: ''
     }
   },
-  // created: function () {
-  //   this.onInit()
-  //   // `this` points to the vm instance
-  //   console.log('selectedAge is: ' + this.selectedAge)
-  // },
+  created () {
+    this.onInit()
+  },
   methods: {
     onInit () {
-      console.log('onInit')
       this.selectedAge = 'aSelect'
     }
   }

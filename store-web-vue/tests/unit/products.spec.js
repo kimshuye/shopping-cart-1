@@ -51,7 +51,6 @@ describe('Products', () => {
 
   it('when onInit is called', () => {
     // const expectValueAge = ''
-
     const clickMethodStub = sinon.stub()
 
     const wrapper = shallowMount(Products)
@@ -62,15 +61,16 @@ describe('Products', () => {
     // expect(wrapper.vm.selectedAge).toBe(expectValueAge)
   })
 
-  // it('setData change selectedAge', async () => {
-  //   const expectVmodel = 'newSelect'
+  it('setData change selectedAge', async () => {
+    const expectValueAge = 'aSelect'
+    const expectVmodel = 'newSelect'
 
-  //   const wrapper = mount(Products)
+    const wrapper = mount(Products)
+    expect(wrapper.vm.selectedAge).toBe(expectValueAge)
+    await wrapper.setData({ selectedAge: expectVmodel })
 
-  //   await wrapper.setData({ selectedAge: expectVmodel })
-
-  //   expect(wrapper.vm.selectedAge).toBe(expectVmodel)
-  // })
+    expect(wrapper.vm.selectedAge).toBe(expectVmodel)
+  })
 
   it('Change Option age by value is a3', async () => {
     const expectValueAge = 'a3'
