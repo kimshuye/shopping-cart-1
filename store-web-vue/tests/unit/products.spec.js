@@ -1,9 +1,11 @@
-import { mount } from '@vue/test-utils'
+import { mount,createLocalVue, shallowMount } from '@vue/test-utils'
+import sinon from 'sinon'
 
 import Products from '@/components/Products.vue'
-// import router, { routes } from '@/router/index'
+import router, { routes } from '@/router/index'
 
 describe('Products', () => {
+
   const selectAgeId = 'inputAge'
 
   it('Render Products page', () => {
@@ -22,6 +24,21 @@ describe('Products', () => {
     expect(wrapper.find(`[for="${selectAgeId}"]`).text()).toBe(expectSelectAge)
   })
 
+  // it('Create selectedAge member Products Component', async () => {
+  //   const expectValueAge = 'aSelect'
+
+  //   const localVue = createLocalVue()
+  //   localVue.use(router)
+  //   const wrapper = shallowMount(Products, {
+  //     localVue,
+  //     mocks: { selectedAge: expectValueAge }
+  //   })
+  //   expect(wrapper.vm.selectedAge).toBe(expectValueAge)
+
+  //   const freshWrapper = shallowMount(Products)
+  //   expect(freshWrapper.vm.selectedAge).toBe(expectValueAge)
+  // })
+
   it('Create Option age Default is Choose', async () => {
     const expectValueAge = 'aSelect'
     const expectTextAge = 'Choose'
@@ -35,6 +52,32 @@ describe('Products', () => {
     expect(selected.element.selected).toBe(true)
   })
 
+  // it('is hidden when onInit is called', () => {
+  //   const expectValueAge = 'aSelect'
+
+  //   const clickMethodStub = sinon.stub()
+
+  //   const wrapper = shallowMount(Products)
+  //   wrapper.setMethods({ onInit: clickMethodStub })
+
+  //   wrapper.vm.onInit()
+  //   expect(clickMethodStub.called).toBe(true)
+  //   expect(wrapper.vm.selectedAge).toBe(expectValueAge)
+  // })
+
+  // it('setData change selectedAge', async () => {
+
+  //   const expectVmodel = 'newSelect'
+
+  //   const wrapper = mount(Products)
+
+  //   expect(wrapper.vm.selectedAge).toBe('aSelect')
+
+  //   await wrapper.setData({ selectedAge: expectVmodel })
+  
+  //   expect(wrapper.vm.selectedAge).toBe(expectVmodel)
+  // })
+  
   it('Change Option age by value is a3', async () => {
     const expectValueAge = 'a3'
     const expectTextAge = '1-2 y'
@@ -121,4 +164,30 @@ describe('Products', () => {
 
     expect(wrapper.find(`[for="${selectGenderId}"]`).text()).toBe(expectSelectGender)
   })
+
+  // it('setData selectedGender', async () => {
+
+  //   const expectVmodel = 'newSelect'
+
+  //   const wrapper = mount(Products)
+  //   // await wrapper.setData({ selectedGender: expectVmodel })
+  
+  //   expect(wrapper.vm.selectedGender).toBe(expectVmodel)
+  // })
+
+  // it('Create Option gender Default is Choose', async () => {
+  //   const expectValueGender = 'gSelect'
+  //   const expectTextGender = 'Choose'
+
+  //   const wrapper = mount(Products)
+  //   const select = wrapper.find(`#${selectGenderId}`)
+  //   const selected = wrapper.find('option:checked')
+
+  //   expect(select.element.value).toBe(expectValueGender)
+  //   expect(select.find('option[disabled]').element.text).toBe(expectTextGender)
+  //   expect(selected.element.selected).toBe(true)
+  // })
+
+
+
 })

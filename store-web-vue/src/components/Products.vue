@@ -7,8 +7,8 @@
 
         <div class="row">
             <div class="col">
-                <label for="inputAge">Select age</label>
-                <select id="inputAge" v-model="selected">
+                <label for="inputAge">Select age</label>&nbsp;
+                <select id="inputAge" >
                     <option value="aSelect" disabled="disabled" >Choose</option>
                     <option value="a1">less 6 m</option>
                     <option value="a2">7-12 m</option>
@@ -19,7 +19,7 @@
                 </select>
             </div>
             <div class="col">
-                <label for="inputGender">Select gender</label>
+                <label for="inputGender">Select gender</label>&nbsp;
 
             </div>
         </div>
@@ -32,9 +32,20 @@ export default {
   name: 'Products',
   data () {
     return {
-      selected: 'aSelect'
+      // selectedAge: ''
     }
-  }
+  },
+  // created: function () {
+  //   this.onInit()
+  //   // `this` points to the vm instance
+  //   console.log('selectedAge is: ' + this.selectedAge)
+  // },
+  // methods: {
+  //   onInit(){
+  //     console.log("onInit");
+  //     this.selectedAge = 'aSelect'
+  //   }
+  // },
 
 }
 </script>
