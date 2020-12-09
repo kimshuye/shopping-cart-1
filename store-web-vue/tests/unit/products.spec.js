@@ -1,11 +1,11 @@
-import { mount,createLocalVue, shallowMount } from '@vue/test-utils'
-import sinon from 'sinon'
+import { mount, createLocalVue, shallowMount } from '@vue/test-utils'
+// import sinon from 'sinon'
 
 import Products from '@/components/Products.vue'
-import router, { routes } from '@/router/index'
+import router from '@/router/index'
+// import router, { routes } from '@/router/index'
 
 describe('Products', () => {
-
   const selectAgeId = 'inputAge'
 
   it('Render Products page', () => {
@@ -71,10 +71,10 @@ describe('Products', () => {
   //   expect(wrapper.vm.selectedAge).toBe('aSelect')
 
   //   await wrapper.setData({ selectedAge: expectVmodel })
-  
+
   //   expect(wrapper.vm.selectedAge).toBe(expectVmodel)
   // })
-  
+
   it('Change Option age by value is a3', async () => {
     const expectValueAge = 'a3'
     const expectTextAge = '1-2 y'
@@ -168,7 +168,7 @@ describe('Products', () => {
 
   //   const wrapper = mount(Products)
   //   // await wrapper.setData({ selectedGender: expectVmodel })
-  
+
   //   expect(wrapper.vm.selectedGender).toBe(expectVmodel)
   // })
 
@@ -184,7 +184,4 @@ describe('Products', () => {
   //   expect(select.find('option[disabled]').element.text).toBe(expectTextGender)
   //   expect(selected.element.selected).toBe(true)
   // })
-
-
-
 })

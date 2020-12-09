@@ -23,7 +23,7 @@
 
             </div>
         </div>
-        
+
     </div>
 </template>
 
@@ -34,7 +34,7 @@ export default {
     return {
       // selectedAge: ''
     }
-  },
+  }
   // created: function () {
   //   this.onInit()
   //   // `this` points to the vm instance
