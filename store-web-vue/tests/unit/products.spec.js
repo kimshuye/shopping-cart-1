@@ -1,5 +1,5 @@
 import { mount, createLocalVue, shallowMount } from '@vue/test-utils'
-// import sinon from 'sinon'
+import sinon from 'sinon'
 
 import Products from '@/components/Products.vue'
 import router from '@/router/index'
@@ -49,26 +49,23 @@ describe('Products', () => {
     expect(selected.element.selected).toBe(true)
   })
 
-  // it('is hidden when onInit is called', () => {
-  //   const expectValueAge = 'aSelect'
+  it('when onInit is called', () => {
+    // const expectValueAge = ''
 
-  //   const clickMethodStub = sinon.stub()
+    const clickMethodStub = sinon.stub()
 
-  //   const wrapper = shallowMount(Products)
-  //   wrapper.setMethods({ onInit: clickMethodStub })
+    const wrapper = shallowMount(Products)
+    wrapper.setMethods({ onInit: clickMethodStub })
 
-  //   wrapper.vm.onInit()
-  //   expect(clickMethodStub.called).toBe(true)
-  //   expect(wrapper.vm.selectedAge).toBe(expectValueAge)
-  // })
+    wrapper.vm.onInit()
+    expect(clickMethodStub.called).toBe(true)
+    // expect(wrapper.vm.selectedAge).toBe(expectValueAge)
+  })
 
   // it('setData change selectedAge', async () => {
-
   //   const expectVmodel = 'newSelect'
 
   //   const wrapper = mount(Products)
-
-  //   expect(wrapper.vm.selectedAge).toBe('aSelect')
 
   //   await wrapper.setData({ selectedAge: expectVmodel })
 

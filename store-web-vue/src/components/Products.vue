@@ -34,18 +34,18 @@ export default {
     return {
       // selectedAge: ''
     }
-  }
+  },
   // created: function () {
   //   this.onInit()
   //   // `this` points to the vm instance
   //   console.log('selectedAge is: ' + this.selectedAge)
   // },
-  // methods: {
-  //   onInit(){
-  //     console.log("onInit");
-  //     this.selectedAge = 'aSelect'
-  //   }
-  // },
+  methods: {
+    onInit () {
+      console.log('onInit')
+      this.selectedAge = 'aSelect'
+    }
+  }
 
 }
 </script>
