@@ -5,7 +5,10 @@ name: CI/CD Frontend Vue
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
 on:
-  _work:
+  push:
+    branches:
+    - feature/cicd
+  workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
       name:
