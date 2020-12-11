@@ -10,45 +10,42 @@ on:
     
 jobs:
   build:
-    runs-on: self-hosted
-    strategy:
-      matrix:
-        node-version: [14.5.1]
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/setup-node@v1
-    # - name: Build image
-    #   run: docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
+      uses: actions/checkout@v2
+    - name: Build image
+      run: docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
     - name: Imstall dependency
-      run: npm install
-    - uses: actions/upload-artifact@v2
-      with:
-        name: my-artifact
-        path: ${PWD}/store-web-vue/node_modules
+      run: docker run -v ${PWD}/store-web-vue:/usr/src/app -w /usr/src/app shopping-cart-1/store-web-vue:dev0.0.1 npm install
+    # - uses: actions/upload-artifact@v2
+    #   with:
+    #     name: my-artifact
+    #     path: ${PWD}/store-web-vue/node_modules
 
-  analysis:
-    runs-on: self-hosted
-    needs: build
-    steps:
-    - name: Checkout
-      uses: actions/setup-node@v1
-    - uses: actions/download-artifact@v2
-      with:
-        name: my-artifact
-        path: ${PWD}/store-web-vue/node_modules
-    - name: code analysis
-      run: make code_analysis_frontend_vue
+  # analysis:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v2
+  #   - uses: actions/download-artifact@v2
+  #     with:
+  #       name: my-artifact
+  #       path: ${PWD}/store-web-vue/node_modules
+  #   - name: code analysis
+  #     run: make code_analysis_frontend_vue
 
   
-  unittest:
-    runs-on: self-hosted
-    needs: build
-    steps:
-    - name: Checkout
-      uses: actions/setup-node@v1
-    - uses: actions/download-artifact@v2
-      with:
-        name: my-artifact
-        path: ${PWD}/store-web-vue/node_modules
-    - name: unittest
-      run: make run_unittest_frontend_vue
+  # unittest:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v2
+  #   - uses: actions/download-artifact@v2
+  #     with:
+  #       name: my-artifact
+  #       path: ${PWD}/store-web-vue/node_modules
+  #   - name: unittest
+  #     run: make run_unittest_frontend_vue
