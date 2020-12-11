@@ -14,9 +14,6 @@
 
 name: CI/CD Frontend vue
 
-strategy:
-  max-parallel: 2
-
 on:
   push:
     branches:
