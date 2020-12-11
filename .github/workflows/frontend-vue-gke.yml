@@ -47,9 +47,21 @@ jobs:
 
     - run: gcloud info
 
-    - name: Build frontend
+    - name: Build Image
       run: |-
         docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
+    
+    - name: Install dependency
+      run: |-
+        docker run -v ${PWD}/store-web-vue:/usr/src/app -w /usr/src/app shopping-cart-1/store-web-vue:dev0.0.1 npm install
+    
+    - name: Code analysis
+      run: |-
+        docker run -v ${PWD}/store-web-vue:/usr/src/app -w /usr/src/app shopping-cart-1/store-web-vue:dev0.0.1 npm run lint
+    
+    - name: Run unittest
+      run: |-
+        docker run -v ${PWD}/store-web-vue:/usr/src/app -w /usr/src/app shopping-cart-1/store-web-vue:dev0.0.1 npm run test:unit
     
 
 
