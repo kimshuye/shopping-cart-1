@@ -24,7 +24,7 @@ jobs:
         path: ${PWD}/store-web-vue/node_modules
 
   # analysis:
-  #   runs-on: ['self-hosted','Linux','ubuntu-latest']
+  #   runs-on: self-hosted
   #   needs: build
   #   steps:
   #   - name: Checkout
@@ -38,7 +38,7 @@ jobs:
 
   
   # unittest:
-  #   runs-on: ['self-hosted','Linux','ubuntu-latest']
+  #   runs-on: self-hosted
   #   needs: build
   #   steps:
   #   - name: Checkout
