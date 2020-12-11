@@ -17,10 +17,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/setup-node@v1
-    - name: Build image
-      run: docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
+    # - name: Build image
+    #   run: docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
     - name: Imstall dependency
-      run: docker run -v ${PWD}/store-web-vue:/usr/src/app -w /usr/src/app shopping-cart-1/store-web-vue:dev0.0.1 npm install
+      run: npm install
     - uses: actions/upload-artifact@v2
       with:
         name: my-artifact
