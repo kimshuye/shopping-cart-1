@@ -22,6 +22,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GKE_SA_KEY: ${{ secrets.GKE_SA_KEY }}
   GKE_CLUSTER: cluster-sun    # TODO: update to cluster name
   GKE_ZONE: us-central1-c   # TODO: update to cluster zone
   DEPLOYMENT_NAME: gke-test # TODO: update to deployment name
@@ -44,8 +45,8 @@ jobs:
         project_id: ${{ secrets.GKE_PROJECT }}
 
     - run: |-
-        gcloud iam service-accounts keys create ~/key.json --iam-account ${{ secrets.GKE_SA_KEY }}
-        
+        gcloud iam service-accounts keys create ~/key.json --iam-account "$GKE_SA_KEY"
+
     # Configure Docker to use the gcloud command-line tool as a credential
     # helper for authentication
     - run: |-
