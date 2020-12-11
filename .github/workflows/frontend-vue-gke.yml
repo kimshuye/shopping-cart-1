@@ -36,7 +36,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-
     # Setup gcloud CLI
     - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
       with:
@@ -44,9 +43,13 @@ jobs:
         project_id: ${{ secrets.GKE_PROJECT }}
         service_account_key: ${{ secrets.GKE_SA_KEY }}
         service_account_email: ${{ secrets.GCP_SA_EMAIL }}
+      
 
     - run: gcloud info
-    - run: make build_frontend_vue_for_test
+
+    - name: Build frontend
+      - run: |-
+        docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
     
 
 
