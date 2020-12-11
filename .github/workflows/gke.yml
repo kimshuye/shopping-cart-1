@@ -43,6 +43,9 @@ jobs:
         service_account_key: ${{ secrets.GKE_SA_KEY }}
         project_id: ${{ secrets.GKE_PROJECT }}
 
+    - run: |-
+        gcloud iam service-accounts keys create ~/key.json --iam-account ${{ secrets.GKE_SA_KEY }}
+        
     # Configure Docker to use the gcloud command-line tool as a credential
     # helper for authentication
     - run: |-
