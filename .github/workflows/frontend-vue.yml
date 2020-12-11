@@ -5,7 +5,7 @@ name: CI/CD Frontend Vue
 on:
   push:
     branches:
-    - feature/cicd
+    - master
     
 jobs:
   install_libs:
