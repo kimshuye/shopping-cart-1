@@ -30,7 +30,7 @@ env:
 
 jobs:
   build:
-    name: Build Frontend For Test
+    name: Build and Install Frontend For Test
     runs-on: ubuntu-latest
 
     steps:
@@ -50,6 +50,10 @@ jobs:
     - name: Build Image
       run: |-
         docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
+
+    - name: Install dependency
+      run: |-
+        docker run -v ${PWD}/store-web-vue:/usr/src/app -w /usr/src/app shopping-cart-1/store-web-vue:dev0.0.1 npm install
 
     - run: echo $(pwd)
     - run: ls -al ${PWD}/store-web-vue/node_modules
