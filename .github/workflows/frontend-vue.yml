@@ -11,9 +11,12 @@ on:
 jobs:
   build:
     runs-on: self-hosted
+    strategy:
+      matrix:
+        node-version: [14.5.1]
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/setup-node@v1
     - name: Build image
       run: docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
     - name: Imstall dependency
@@ -28,7 +31,7 @@ jobs:
   #   needs: build
   #   steps:
   #   - name: Checkout
-  #     uses: actions/checkout@v2
+  #     uses: actions/setup-node@v1
   #   - uses: actions/download-artifact@v2
   #     with:
   #       name: my-artifact
@@ -42,7 +45,7 @@ jobs:
   #   needs: build
   #   steps:
   #   - name: Checkout
-  #     uses: actions/checkout@v2
+  #     uses: actions/setup-node@v1
   #   - uses: actions/download-artifact@v2
   #     with:
   #       name: my-artifact
