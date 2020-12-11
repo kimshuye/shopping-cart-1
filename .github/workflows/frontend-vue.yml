@@ -26,29 +26,29 @@ jobs:
         name: my-artifact
         path: ${PWD}/store-web-vue/node_modules
 
-  # analysis:
-  #   runs-on: self-hosted
-  #   needs: build
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/setup-node@v1
-  #   - uses: actions/download-artifact@v2
-  #     with:
-  #       name: my-artifact
-  #       path: ${PWD}/store-web-vue/node_modules
-  #   - name: code analysis
-  #     run: make code_analysis_frontend_vue
+  analysis:
+    runs-on: self-hosted
+    needs: build
+    steps:
+    - name: Checkout
+      uses: actions/setup-node@v1
+    - uses: actions/download-artifact@v2
+      with:
+        name: my-artifact
+        path: ${PWD}/store-web-vue/node_modules
+    - name: code analysis
+      run: make code_analysis_frontend_vue
 
   
-  # unittest:
-  #   runs-on: self-hosted
-  #   needs: build
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/setup-node@v1
-  #   - uses: actions/download-artifact@v2
-  #     with:
-  #       name: my-artifact
-  #       path: ${PWD}/store-web-vue/node_modules
-  #   - name: unittest
-  #     run: make run_unittest_frontend_vue
+  unittest:
+    runs-on: self-hosted
+    needs: build
+    steps:
+    - name: Checkout
+      uses: actions/setup-node@v1
+    - uses: actions/download-artifact@v2
+      with:
+        name: my-artifact
+        path: ${PWD}/store-web-vue/node_modules
+    - name: unittest
+      run: make run_unittest_frontend_vue
