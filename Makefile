@@ -22,15 +22,17 @@ run_unittest_frontend:
 build_frontend:
 	docker-compose build store-web
 
+build_frontend_vue_for_test:
+	cd store-web-vue && docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
 
 install_dependency_frontend_vue:
-	cd store-web-vue && npm install
+	cd store-web-vue && docker run -v ${PWD}/store-web-vue:/usr/src/app -w /usr/src/app shopping-cart-1/store-web-vue:dev0.0.1 npm install
 
 code_analysis_frontend_vue:
-	cd store-web-vue && npm run lint
+	cd store-web-vue && docker run -v ${PWD}/store-web-vue:/usr/src/app -w /usr/src/app shopping-cart-1/store-web-vue:dev0.0.1 npm run lint
 
 run_unittest_frontend_vue:
-	cd store-web-vue && npm run test:unit
+	cd store-web-vue && docker run -v ${PWD}/store-web-vue:/usr/src/app -w /usr/src/app shopping-cart-1/store-web-vue:dev0.0.1 npm run test:unit
 
 run_unittest_watch_frontend_vue:
 	cd store-web-vue && npm run test:unit:watch

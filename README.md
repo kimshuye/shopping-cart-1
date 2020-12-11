@@ -236,3 +236,13 @@ gcloud container clusters describe ${CLUSTER_NAME} --region=us-central1-c
 gcloud iam service-accounts keys create ~/key.json --iam-account ${SERVICE_ACCOUNT}
 ```
 
+* `service_account_key`: The service account key which will be used for authentication. This key should be [created](https://cloud.google.com/iam/docs/creating-managing-service-account-keys), encoded as a [Base64](https://en.wikipedia.org/wiki/Base64) string (eg. `cat my-key.json | base64` on macOS), and stored as a [secret](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets). 
+
+
+cd store-web-vue && docker build -f ${PWD}/Dockerfile.dev --tag shopping-cart-1/store-web-vue:dev0.0.1 .
+
+cd store-web-vue && docker run -v ${PWD}:/usr/src/app -w /usr/src/app shopping-cart-1/store-web-vue:dev0.0.1 npm install
+cd store-web-vue && docker run -v ${PWD}:/usr/src/app -w /usr/src/app shopping-cart-1/store-web-vue:dev0.0.1 npm run lint
+cd store-web-vue && docker run -v ${PWD}:/usr/src/app -w /usr/src/app shopping-cart-1/store-web-vue:dev0.0.1 npm run test:unit
+
+
