@@ -192,3 +192,47 @@ robot atdd/ui/shopping_cart_success.robot
 ```
 make run_robot
 ```
+
+
+# GCloud
+
+## Env
+
+```
+
+export CLOUDSDK_CORE_PROJECT=sun-ops
+export CLUSTER_NAME=cluster-sun
+export SERVICE_ACCOUNT=xxx-compute@developer.gserviceaccount.com
+
+```
+
+## Set workspace
+
+```
+export CLOUDSDK_CORE_PROJECT=sun-ops
+
+gcloud config set project ${CLOUDSDK_CORE_PROJECT}
+```
+
+## Create clusters
+
+```
+export CLUSTER_NAME=cluster-sun
+
+gcloud container clusters create ${CLUSTER_NAME} --num-nodes=1 --region=us-central1-c
+```
+
+## See describe
+
+```
+
+gcloud container clusters describe ${CLUSTER_NAME} --region=us-central1-c
+```
+
+## Create a JSON service account key for the service account.
+
+
+```
+gcloud iam service-accounts keys create ~/key.json --iam-account ${SERVICE_ACCOUNT}
+```
+
