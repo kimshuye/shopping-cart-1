@@ -14,9 +14,9 @@ env:
 
 jobs:
 
-  install_dependency:
+  analysis:
     runs-on: ubuntu-latest
-    name: install dependency
+    name: analysis testing
     strategy:
       matrix:
         node-version: [14.15.1]
@@ -28,25 +28,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install dependency
       run: cd store-web-vue && npm install
-
-  analysis:
-    needs: install_dependency
-    runs-on: ubuntu-latest
-    name: analysis testing
-    strategy:
-      matrix:
-        node-version: [14.15.1]
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}\
     - name: code analysis
       run: cd store-web-vue && npm run lint
 
   unittest:
-    needs: install_dependency
     runs-on: ubuntu-latest
     name: unittest testing
     strategy:
@@ -57,6 +42,8 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}\
+        node-version: ${{ matrix.node-version }}
+    - name: Install dependency
+      run: cd store-web-vue && npm install
     - name: run unittest
       run: cd store-web-vue && npm run test:unit
