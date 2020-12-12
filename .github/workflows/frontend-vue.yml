@@ -25,9 +25,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: cd store-web-vue && npm install
-    - run: cd store-web-vue && npm run lint
-    - run: cd store-web-vue && npm run test:unit
+    - name: Install dependency
+      run: cd store-web-vue && npm install
     - uses: actions/upload-artifact@v2
       with:
         name: my-artifact
@@ -51,7 +50,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: cd store-web-vue && npm run lint
+    - name: code analysis
+      run: cd store-web-vue && npm run lint
 
   # unittest:
   #   needs: build_test
