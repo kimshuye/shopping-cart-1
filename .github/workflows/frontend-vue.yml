@@ -37,8 +37,7 @@ jobs:
   analysis:
     needs: build_test
     runs-on: ubuntu-latest
-    name: Build for Test
-    runs-on: ubuntu-latest
+    name: analysis testing
     strategy:
       matrix:
         node-version: [14.15.1]
