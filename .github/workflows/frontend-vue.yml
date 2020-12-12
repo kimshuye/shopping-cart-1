@@ -30,6 +30,7 @@ jobs:
       run: cd store-web-vue && npm install
 
   analysis:
+    needs: install_dependency
     runs-on: ubuntu-latest
     name: analysis testing
     strategy:
@@ -45,6 +46,7 @@ jobs:
       run: cd store-web-vue && npm run lint
 
   unittest:
+    needs: install_dependency
     runs-on: ubuntu-latest
     name: unittest testing
     strategy:
