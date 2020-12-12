@@ -26,9 +26,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm run lint
-    - run: npm run test:unit
+    - run: cd store-web-vue && npm install
+    - run: cd store-web-vue && npm run lint
+    - run: cd store-web-vue && npm run test:unit
         
 
   # analysis:
