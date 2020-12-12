@@ -18,34 +18,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     -
-      name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
-    #-
-    #  name: Cache Docker layers
-    #  uses: actions/cache@v2
-    #  with:
-    #    path: /tmp/.buildx-cache
-    #    key: ${{ runner.os }}-buildx-${{ github.sha }}
-    #    restore-keys: |
-    #      ${{ runner.os }}-buildx-
-    
-    -
-      name: Login to GitHub Container Registry
-      uses: actions/checkout@v2
+      name: Build Push
+      uses: whoan/docker-build-with-cache-action@v5
       with:
-        registry: docker.io
         username: $DOC_HUB_USER
         password: $DOC_HUB_PASS
-    -
-      name: Build and push
-      id: docker_build
-      uses: docker/build-push-action@v2
-      with: 
+        image_name: tokdev/shopping-cart-1/store-web-vue
+        image_tag: dev0.0.1
+        push_git_tag: true
+        registry: docker.io
         context: store-web-vue
-        file: store-web-vue/Dockerfile.dev
-        push: false
-        tags: tokdev/shopping-cart-1/store-web-vue:dev0.0.1
-        cache-to: type=local,dest=/tmp/.buildx-cache
+        dockerfile: Dockerfile.dev
+        # build_extra_args: "--compress=true --build-arg=hello=world"
+        push_image_and_stages: docker build -f store-web-vue/Dockerfile.dev --tag tokdev/shopping-cart-1/store-web-vue:dev0.0.1 store-web-vue
+        
+        # tags: tokdev/shopping-cart-1/store-web-vue:dev0.0.1
+        # cache-to: type=local,dest=/tmp/.buildx-cache
         # cache-from: type=local,dest=/tmp/.buildx-cache
         # cache-from: type=registry,ref=tokdev/shopping-cart-1/store-web-vue:dev0.0.1
         # cache-from: type=local,src=store-web-vue/node_modules
