@@ -7,17 +7,23 @@ on:
     branches:
     # - master
     - feature/cicd
-    
+
+env:
+  DOC_HUB_USER: ${{ secrets.DOC_HUB_USER }}
+  DOC_HUB_PASS: ${{ secrets.DOC_HUB_PASS }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Login Registry
+      run: docker login -u ${DOC_HUB_USER} -p ${DOC_HUB_PASS}
     - name: Build image
-      run: docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
-    - name: Imstall dependency
-      run: docker run -v ${PWD}/store-web-vue:/usr/src/app -w /usr/src/app shopping-cart-1/store-web-vue:dev0.0.1 npm install
+      run: docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag tokdev/shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
+    - name: Push image
+      run: docker push tokdev/shopping-cart-1/store-web-vue:dev0.0.1
     # - uses: actions/upload-artifact@v2
     #   with:
     #     name: my-artifact
