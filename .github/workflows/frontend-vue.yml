@@ -42,7 +42,7 @@ jobs:
         node-version: [14.15.1]
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/upload-artifact@v2
+    - uses: actions/download-artifact@v2
       with:
         name: my-artifact
         path: store-web-vue/node_modules
@@ -62,7 +62,7 @@ jobs:
         node-version: [14.15.1]
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/upload-artifact@v2
+    - uses: actions/download-artifact@v2
       with:
         name: my-artifact
         path: store-web-vue/node_modules
