@@ -21,6 +21,7 @@ jobs:
     - name: Build Docker Image
       uses: docker/build-push-action@v1
       with:
+        path: store-web-vue/Dockerfile.dev
         repository: tokdev/shopping-cart-1/store-web-vue
         tags: dev0.0.1
     - uses: shrink/actions-docker-extract@v1
