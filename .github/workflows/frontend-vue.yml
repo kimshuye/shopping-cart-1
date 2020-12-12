@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Login to DockerHub Registry
-        run: echo ${{ secrets.DOC_HUB_PASS }} | docker login https://docker.io -u ${{ secrets.DOC_HUB_USER }} --password-stdin
+        run: echo $DOC_HUB_PASS | docker login https://docker.io -u $DOC_HUB_USER --password-stdin
       - name: Build image
         run: docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag tokdev/shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
       - name: Push image
