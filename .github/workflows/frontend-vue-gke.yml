@@ -48,7 +48,8 @@ jobs:
     - name: Build Image
       run: |-
         docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag tokdev/shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
-
+    - name: install npm
+      run: docker run -v ${PWD}/store-web-vue:/usr/src/app -w /usr/src/app tokdev/shopping-cart-1/store-web-vue:dev0.0.1 npm install
     - name: Code analysis
       run: |-
         docker run -v ${PWD}/store-web-vue:/usr/src/app -w /usr/src/app tokdev/shopping-cart-1/store-web-vue:dev0.0.1 npm run lint
@@ -71,7 +72,8 @@ jobs:
     - name: Build Image
       run: |-
         docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag tokdev/shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
-        
+    - name: install npm
+      run: docker run -v ${PWD}/store-web-vue:/usr/src/app -w /usr/src/app tokdev/shopping-cart-1/store-web-vue:dev0.0.1 npm install  
     - name: Run unittest
       run: |-
         docker run -v ${PWD}/store-web-vue:/usr/src/app -w /usr/src/app tokdev/shopping-cart-1/store-web-vue:dev0.0.1 npm run test:unit
