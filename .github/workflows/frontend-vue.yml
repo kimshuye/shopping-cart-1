@@ -30,8 +30,8 @@ jobs:
         context: store-web-vue
         dockerfile: Dockerfile.dev
         # build_extra_args: "--compress=true --build-arg=hello=world"
-        push_image_and_stages: docker build -f store-web-vue/Dockerfile.dev --tag tokdev/shopping-cart-1/store-web-vue:dev0.0.1 store-web-vue
-        
+        # push_image_and_stages: docker build -f store-web-vue/Dockerfile.dev --tag tokdev/shopping-cart-1/store-web-vue:dev0.0.1 store-web-vue
+
         # tags: tokdev/shopping-cart-1/store-web-vue:dev0.0.1
         # cache-to: type=local,dest=/tmp/.buildx-cache
         # cache-from: type=local,dest=/tmp/.buildx-cache
