@@ -53,15 +53,22 @@ jobs:
     - name: code analysis
       run: cd store-web-vue && npm run lint
 
-  # unittest:
-  #   needs: build_test
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #   - uses: actions/download-artifact@v2
-  #     with:
-  #       name: my-artifact
-  #       path: ${PWD}/store-web-vue/node_modules
-  #   - name: unittest
-  #     run: make run_unittest_frontend_vue
+  unittest:
+    needs: build_test
+    runs-on: ubuntu-latest
+    name: unittest testing
+    strategy:
+      matrix:
+        node-version: [14.15.1]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/upload-artifact@v2
+      with:
+        name: my-artifact
+        path: store-web-vue/node_modules
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: run unittest
+      run: make run_unittest_frontend_vue
