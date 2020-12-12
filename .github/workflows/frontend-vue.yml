@@ -16,9 +16,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    # -
-    #   name: Set up Docker Buildx
-    #   uses: docker/setup-buildx-action@v1
+    -
+      name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
     -
       name: Login to GitHub Container Registry
       uses: actions/checkout@v2
@@ -33,14 +33,14 @@ jobs:
       with: 
         context: store-web-vue
         file: store-web-vue/Dockerfile.dev
-        push: true
+        push: false
         tags: tokdev/shopping-cart-1/store-web-vue:dev0.0.1
         cache-from: type=registry,ref=tokdev/shopping-cart-1/store-web-vue:dev0.0.1
         cache-to: type=inline
     # - uses: actions/upload-artifact@v2
     #   with:
     #     name: my-artifact
-    #     path: ${PWD}/store-web-vue/node_modules
+    #     path: store-web-vue/node_modules
 
   # analysis:
   #   runs-on: ubuntu-latest
