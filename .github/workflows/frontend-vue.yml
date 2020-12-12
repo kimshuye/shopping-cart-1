@@ -29,13 +29,13 @@ jobs:
     #    restore-keys: |
     #      ${{ runner.os }}-buildx-
     
-    # -
-    #   name: Login to GitHub Container Registry
-    #   uses: actions/checkout@v2
-    #   with:
-    #     registry: docker.io
-    #     username: $DOC_HUB_USER
-    #     password: $DOC_HUB_PASS
+    -
+      name: Login to GitHub Container Registry
+      uses: actions/checkout@v2
+      with:
+        registry: docker.io
+        username: $DOC_HUB_USER
+        password: $DOC_HUB_PASS
     -
       name: Build and push
       id: docker_build
@@ -43,7 +43,7 @@ jobs:
       with: 
         context: store-web-vue
         file: store-web-vue/Dockerfile.dev
-        # push: true
+        push: false
         tags: tokdev/shopping-cart-1/store-web-vue:dev0.0.1
         cache-to: type=local,dest=/tmp/.buildx-cache
         # cache-from: type=local,dest=/tmp/.buildx-cache
