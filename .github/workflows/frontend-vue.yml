@@ -13,31 +13,25 @@ env:
   DOC_HUB_PASS: ${{ secrets.DOC_HUB_PASS }}
 
 jobs:
-  build_tet:
+  build_test:
     name: Build for Test
     runs-on: ubuntu-latest
     steps:
-    -
-      name: Build Push
-      uses: whoan/docker-build-with-cache-action@v5
+    - uses: actions/checkout@v2
+    - name: Build Docker Image
+      uses: docker/build-push-action@v1
       with:
-        username: $DOC_HUB_USER
-        password: $DOC_HUB_PASS
-        image_name: tokdev/shopping-cart-1/store-web-vue
-        image_tag: dev0.0.1
-        push_git_tag: true
-        registry: docker.io
-        context: store-web-vue
-        dockerfile: Dockerfile.dev
-        # build_extra_args: "--compress=true --build-arg=hello=world"
-        # push_image_and_stages: docker build -f store-web-vue/Dockerfile.dev --tag tokdev/shopping-cart-1/store-web-vue:dev0.0.1 store-web-vue
-
-        # tags: tokdev/shopping-cart-1/store-web-vue:dev0.0.1
-        # cache-to: type=local,dest=/tmp/.buildx-cache
-        # cache-from: type=local,dest=/tmp/.buildx-cache
-        # cache-from: type=registry,ref=tokdev/shopping-cart-1/store-web-vue:dev0.0.1
-        # cache-from: type=local,src=store-web-vue/node_modules
-        # cache-to: type=local,dest=store-web-vue/node_modules
+        repository: tokdev/shopping-cart-1/store-web-vue
+        tags: dev0.0.1
+    - uses: shrink/actions-docker-extract@v1
+      with:
+        image: tokdev/shopping-cart-1/store-web-vue
+        path: /app/.
+    - name: Upload node_modules
+      uses: actions/upload-artifact@v2
+      with:
+        path: ${{ steps.extract.outputs.destination }}
+        name: node_modules
         
 
   # analysis:
