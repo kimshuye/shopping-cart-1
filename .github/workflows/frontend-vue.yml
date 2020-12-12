@@ -12,29 +12,9 @@ env:
   DOC_HUB_USER: ${{ secrets.DOC_HUB_USER }}
   DOC_HUB_PASS: ${{ secrets.DOC_HUB_PASS }}
 
-jobs:
-  build_test:
-    name: Build for Test
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.15.1]
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install dependency
-      run: cd store-web-vue && npm install
-    - uses: actions/upload-artifact@v2
-      with:
-        name: my-artifact
-        path: store-web-vue/node_modules
-        
+jobs:   
 
   analysis:
-    needs: build_test
     runs-on: ubuntu-latest
     name: analysis testing
     strategy:
@@ -50,11 +30,12 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Install dependency
+      run: cd store-web-vue && npm install
     - name: code analysis
       run: cd store-web-vue && npm run lint
 
   unittest:
-    needs: build_test
     runs-on: ubuntu-latest
     name: unittest testing
     strategy:
@@ -70,5 +51,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Install dependency
+      run: cd store-web-vue && npm install
     - name: run unittest
-      run: make run_unittest_frontend_vue
+      run: cd store-web-vue && npm run test:unit
