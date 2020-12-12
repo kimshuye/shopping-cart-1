@@ -35,12 +35,10 @@ jobs:
         file: store-web-vue/Dockerfile.dev
         push: false
         tags: tokdev/shopping-cart-1/store-web-vue:dev0.0.1
-        cache-from: type=registry,ref=tokdev/shopping-cart-1/store-web-vue:dev0.0.1
-        cache-to: type=inline
-    # - uses: actions/upload-artifact@v2
-    #   with:
-    #     name: my-artifact
-    #     path: store-web-vue/node_modules
+        # cache-from: type=registry,ref=tokdev/shopping-cart-1/store-web-vue:dev0.0.1
+        # cache-from: type=local,src=store-web-vue/node_modules
+        cache-to: type=local,dest=store-web-vue/node_modules
+        
 
   # analysis:
   #   runs-on: ubuntu-latest
