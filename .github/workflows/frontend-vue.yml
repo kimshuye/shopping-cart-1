@@ -16,20 +16,19 @@ jobs:
   build_test:
     name: Build for Test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.15.1]
+
     steps:
     - uses: actions/checkout@v2
-    - name: Build Image
-      run: |-
-        docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag tokdev/shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
-    - uses: shrink/actions-docker-extract@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
       with:
-        image: tokdev/shopping-cart-1/store-web-vue:dev0.0.1
-        path: /app/.
-    - name: Upload node_modules
-      uses: actions/upload-artifact@v2
-      with:
-        path: ${{ steps.extract.outputs.destination }}
-        name: node_modules
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - run: npm run lint
+    - run: npm run test:unit
         
 
   # analysis:
