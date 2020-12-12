@@ -27,9 +27,8 @@ jobs:
     - uses: shrink/actions-docker-extract@v1
       with:
         image: tokdev/shopping-cart-1/store-web-vue:dev0.0.1
-        path: /app/.
+        path: /usr/src/app/.
     - name: Upload node_modules
-      uses: actions/upload-artifact@v2
       with:
         path: ${{ steps.extract.outputs.destination }}
         name: node_modules
