@@ -31,11 +31,11 @@ jobs:
       id: docker_build
       uses: docker/build-push-action@v2
       with: 
-        context: ${PWD}/store-web-vue
+        context: store-web-vue
         file: Dockerfile.dev
         push: true
         tags: tokdev/shopping-cart-1/store-web-vue:dev0.0.1
-        cache-from: type=registry,ref=user/app:latest
+        cache-from: type=registry,ref=tokdev/shopping-cart-1/store-web-vue:dev0.0.1
         cache-to: type=inline
     # - uses: actions/upload-artifact@v2
     #   with:
