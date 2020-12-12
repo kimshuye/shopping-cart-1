@@ -12,7 +12,22 @@ env:
   DOC_HUB_USER: ${{ secrets.DOC_HUB_USER }}
   DOC_HUB_PASS: ${{ secrets.DOC_HUB_PASS }}
 
-jobs:   
+jobs:
+
+  install_dependency:
+    runs-on: ubuntu-latest
+    name: install dependency
+    strategy:
+      matrix:
+        node-version: [14.15.1]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install dependency
+      run: cd store-web-vue && npm install
 
   analysis:
     runs-on: ubuntu-latest
@@ -25,9 +40,7 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install dependency
-      run: cd store-web-vue && npm install
+        node-version: ${{ matrix.node-version }}\
     - name: code analysis
       run: cd store-web-vue && npm run lint
 
@@ -42,8 +55,6 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install dependency
-      run: cd store-web-vue && npm install
+        node-version: ${{ matrix.node-version }}\
     - name: run unittest
       run: cd store-web-vue && npm run test:unit
