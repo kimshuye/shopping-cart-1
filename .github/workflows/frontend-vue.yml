@@ -18,15 +18,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build Docker Image
-      uses: docker/build-push-action@v1
-      with:
-        path: store-web-vue/Dockerfile.dev
-        repository: tokdev/shopping-cart-1/store-web-vue
-        tags: dev0.0.1
+    - name: Build Image
+      run: |-
+        docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag tokdev/shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
+    - name: Install dependency
+      run: |-
+        docker run -v ${PWD}/store-web-vue:/usr/src/app -w /usr/src/app tokdev/shopping-cart-1/store-web-vue:dev0.0.1 npm install
     - uses: shrink/actions-docker-extract@v1
       with:
-        image: tokdev/shopping-cart-1/store-web-vue
+        image: tokdev/shopping-cart-1/store-web-vue:dev0.0.1
         path: /app/.
     - name: Upload node_modules
       uses: actions/upload-artifact@v2
