@@ -32,7 +32,7 @@ jobs:
       uses: docker/build-push-action@v2
       with: 
         context: store-web-vue
-        file: Dockerfile.dev
+        file: store-web-vue/Dockerfile.dev
         push: true
         tags: tokdev/shopping-cart-1/store-web-vue:dev0.0.1
         cache-from: type=registry,ref=tokdev/shopping-cart-1/store-web-vue:dev0.0.1
