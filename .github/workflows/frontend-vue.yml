@@ -13,19 +13,28 @@ env:
   DOC_HUB_PASS: ${{ secrets.DOC_HUB_PASS }}
 
 jobs:
-  build:
+  build_tet:
+    name: Build for Test
     runs-on: ubuntu-latest
     steps:
     -
       name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
     -
-      name: Login to GitHub Container Registry
-      uses: actions/checkout@v2
+      name: Cache Docker layers
+      uses: actions/cache@v2
       with:
-        registry: docker.io
-        username: $DOC_HUB_USER
-        password: $DOC_HUB_PASS
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
+    # -
+    #   name: Login to GitHub Container Registry
+    #   uses: actions/checkout@v2
+    #   with:
+    #     registry: docker.io
+    #     username: $DOC_HUB_USER
+    #     password: $DOC_HUB_PASS
     -
       name: Build and push
       id: docker_build
@@ -37,7 +46,8 @@ jobs:
         tags: tokdev/shopping-cart-1/store-web-vue:dev0.0.1
         # cache-from: type=registry,ref=tokdev/shopping-cart-1/store-web-vue:dev0.0.1
         # cache-from: type=local,src=store-web-vue/node_modules
-        cache-to: type=local,dest=store-web-vue/node_modules
+        # cache-to: type=local,dest=store-web-vue/node_modules
+        cache-to: type=local,dest=/tmp/.buildx-cache
         
 
   # analysis:
