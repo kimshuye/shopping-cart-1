@@ -21,14 +21,12 @@ jobs:
     - name: Build Image
       run: |-
         docker build -f ${PWD}/store-web-vue/Dockerfile.dev --tag tokdev/shopping-cart-1/store-web-vue:dev0.0.1 ${PWD}/store-web-vue
-    - name: Install dependency
-      run: |-
-        docker run -v ${PWD}/store-web-vue:/usr/src/app -w /usr/src/app tokdev/shopping-cart-1/store-web-vue:dev0.0.1 npm install
     - uses: shrink/actions-docker-extract@v1
       with:
         image: tokdev/shopping-cart-1/store-web-vue:dev0.0.1
-        path: /usr/src/app/.
+        path: /app/.
     - name: Upload node_modules
+      uses: actions/upload-artifact@v2
       with:
         path: ${{ steps.extract.outputs.destination }}
         name: node_modules
