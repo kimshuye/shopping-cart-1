@@ -1,6 +1,12 @@
 pipeline {
   agent any
 
+  environment {
+    GOROOT  = "/usr/local/go"
+    GOPATH = "$GOROOT"
+    PATH  = "$PATH:/usr/local/go/bin:$GOPATH/bin"
+  }
+
   stages {
     stage('code analysis') {
       steps {

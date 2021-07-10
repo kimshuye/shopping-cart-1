@@ -10,15 +10,15 @@ run_robot_requests:
 	python3 -m robot test/api/checkout-success-template.robot
 
 code_analysis_backend:
-	# docker network create mini-shopping-cart_default | true
-	# cd store-service && docker build -t toy-store-service:0.0.2 -f Dockerfile.run .
-	# cd store-service && docker run --name store-service_1 --network=mini-shopping-cart_default --rm -v "${PWD}/store-service":/usr/src/myapp -w /usr/src/myapp toy-store-service:0.0.2 go vet ./...
-	cd store-service && go vet ./...
+	docker network create mini-shopping-cart_default | true
+	cd store-service && docker build -t toy-store-service:0.0.2 -f Dockerfile.run .
+	cd store-service && docker run --name store-service_1 --network=mini-shopping-cart_default --rm -v "${PWD}/store-service":/usr/src/myapp -w /usr/src/myapp toy-store-service:0.0.2 go vet ./...
+	# cd store-service && go vet ./...
 
 run_unittest_backend:
-	# docker network create mini-shopping-cart_default | true
-	# cd store-service && docker run --name store-service_1 --network=mini-shopping-cart_default --rm -v "${PWD}/store-service":/usr/src/myapp -w /usr/src/myapp toy-store-service:0.0.2 go test ./... -v
-	cd store-service && go test ./... -v
+	docker network create mini-shopping-cart_default | true
+	cd store-service && docker run --name store-service_1 --network=mini-shopping-cart_default --rm -v "${PWD}/store-service":/usr/src/myapp -w /usr/src/myapp toy-store-service:0.0.2 go test ./... -v
+	# cd store-service && go test ./... -v
 
 run_integratetest_backend:
 	docker network create mini-shopping-cart_default | true
