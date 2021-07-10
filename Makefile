@@ -3,8 +3,8 @@ backend: code_analysis_backend run_unittest_backend run_integratetest_backend bu
 
 run_robot_selinium:
 	make build_backend
-	docker-compose up -d store-cache store-service store-nginx
-	python3 -m robot atdd/ui/shopping_cart_success.robot
+	docker-compose up -d store-cache store-service store-web store-nginx
+	python3 -m robot atdd/ui-robot/shopping_cart_success.robot
 
 run_robot_requests:
 	make build_backend
@@ -33,7 +33,7 @@ run_integratetest_backend:
 	docker-compose down | true
 
 build_backend:
-	docker-compose build store-service
+	docker-compose build store-service store-web store-nginx
 	docker network create mini-shopping-cart_default | true
 	docker-compose up -d store-database bank-gateway shipping-gateway
 	sleep 20

@@ -1,4 +1,4 @@
-FROM golang:1.12 as builder
+FROM golang:1.15.3 as builder
 WORKDIR /module
 COPY ./go.mod /module/go.mod
 COPY ./go.sum /module/go.sum
@@ -14,5 +14,5 @@ RUN apk add tzdata && \
 WORKDIR /root/
 COPY --from=builder /module/bin .
 ENV GIN_MODE release
-EXPOSE 3030
+EXPOSE 8000
 CMD ./app
