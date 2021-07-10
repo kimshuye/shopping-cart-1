@@ -29,7 +29,7 @@ services:
     volumes:
       - ./tearup/:/docker-entrypoint-initdb.d/
     ports:
-      - "3306:3306"
+      - "3307:3306"
 
   # store-database-cluster:
   #   image: mysql/mysql-cluster:5.7

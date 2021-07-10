@@ -72,7 +72,7 @@ func main() {
 		BankEndpoint: "http://bank-gateway:8882",
 	}
 	shippingGateway := shipping.ShippingGateway{
-		KerryEndpoint: "http://shipping-gateway:8882",
+		KerryEndpoint: "http://shipping-gateway:8883",
 	}
 	paymentService := payment.PaymentService{
 		BankGateway:        &bankGateway,
