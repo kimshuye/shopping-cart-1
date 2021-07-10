@@ -1,13 +1,15 @@
 # backend: code_analysis_backend run_unittest_backend run_integratetest_backend build_backend start_service run_robot_requests stop_service
 backend: code_analysis_backend run_unittest_backend run_integratetest_backend build_backend start_service run_integratetest_backend_by_robot stop_service
 
-run_robot_selinium: 
+run_robot_selinium:
+	make build_backend
+	docker-compose up -d store-cache store-service store-nginx
 	python3 -m robot atdd/ui/shopping_cart_success.robot
 
 run_robot_requests:
-	sleep 20
-	cat tearup/init.sql | docker exec -i store-database /usr/bin/mysql -u sealteam --password=sckshuhari --default-character-set=utf8  toy
-	python3 -m robot atdd/api/checkout-success-template.robot
+	make build_backend
+	docker-compose up -d store-cache store-service
+	python3 -m robot atdd/api-robot/shopping-cart-sucess.robot
 
 code_analysis_backend:
 	docker network create mini-shopping-cart_default | true
@@ -32,6 +34,12 @@ run_integratetest_backend:
 
 build_backend:
 	docker-compose build store-service
+	docker network create mini-shopping-cart_default | true
+	docker-compose up -d store-database bank-gateway shipping-gateway
+	sleep 20
+	cat tearup/init.sql | docker exec -i store-database mysql --host=127.0.0.1 -u sealteam --password=sckshuhari --default-character-set=utf8 -D toy
+	sleep 20
+	
 
 start_service:
 	docker-compose up -d

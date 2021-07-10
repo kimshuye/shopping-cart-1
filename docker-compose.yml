@@ -10,6 +10,7 @@ services:
       - "8000:8000"
     depends_on:
       - store-database
+      - store-cache
     restart: always
     environment: 
       - TEST_MODE=true
