@@ -1,10 +1,6 @@
 FROM golang:1.15.3 as builder
 ENV BANK_GATEWAY=bank-gateway
 ENV SHIPPING_GATEWAY=shipping-gateway
-ENV GOROOT=/usr/local/go
-ENV GOPATH=$GOROOT
-ENV PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-
 WORKDIR /module
 COPY ./go.mod /module/go.mod
 COPY ./go.sum /module/go.sum
