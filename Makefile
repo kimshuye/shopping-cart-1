@@ -2,12 +2,12 @@
 backend: code_analysis_backend run_unittest_backend run_integratetest_backend build_backend start_service run_integratetest_backend_by_robot stop_service
 
 run_robot_selinium: 
-	python3 -m robot test/ui/shopping_cart_success.robot
+	python3 -m robot atdd/ui/shopping_cart_success.robot
 
 run_robot_requests:
 	sleep 20
 	cat tearup/init.sql | docker exec -i store-database /usr/bin/mysql -u sealteam --password=sckshuhari --default-character-set=utf8  toy
-	python3 -m robot test/api/checkout-success-template.robot
+	python3 -m robot atdd/api/checkout-success-template.robot
 
 code_analysis_backend:
 	docker network create mini-shopping-cart_default | true
