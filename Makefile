@@ -23,9 +23,9 @@ run_unittest_backend:
 run_integratetest_backend:
 	docker network create mini-shopping-cart_default | true
 	docker-compose up -d store-database bank-gateway shipping-gateway
-	sleep 30
+	sleep 20
 	cat tearup/init.sql | docker exec -i store-database mysql --host=127.0.0.1 -u sealteam --password=sckshuhari --default-character-set=utf8 -D toy
-	sleep 30
+	sleep 20
 	cd store-service && docker run --name store-service_1 --network=mini-shopping-cart_default --rm -v "${PWD}/store-service":/usr/src/myapp -w /usr/src/myapp toy-store-service:0.0.2 go test -tags=integration internal/...
 	# cd store-service && go test -tags=integration internal/...
 	docker-compose down | true
