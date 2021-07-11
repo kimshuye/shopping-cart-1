@@ -10,6 +10,7 @@ run_robot_selinium:
 
 run_robot_requests:
 	/bin/bash
+	pip3 list | grep robot
 	make build_backend
 	docker-compose up -d store-cache store-service
 	python3 -m robot atdd/api-robot/shopping-cart-sucess.robot
