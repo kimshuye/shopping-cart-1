@@ -2,12 +2,14 @@
 backend: code_analysis_backend run_unittest_backend run_integratetest_backend build_backend start_service run_integratetest_backend_by_robot stop_service
 
 run_robot_selinium:
+	/bin/bash
 	python3 -m pip3 install -r requirements.txt
 	make build_backend
 	docker-compose up -d store-cache store-service store-web store-nginx
 	python3 -m robot atdd/ui-robot/shopping_cart_success.robot
 
 run_robot_requests:
+	/bin/bash
 	make build_backend
 	docker-compose up -d store-cache store-service
 	python3 -m robot atdd/api-robot/shopping-cart-sucess.robot
@@ -43,7 +45,6 @@ build_backend:
 	
 
 start_service:
-	/bin/bash
 	docker-compose up -d
 	sleep 20
 
