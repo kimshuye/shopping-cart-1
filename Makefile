@@ -6,6 +6,7 @@ run_robot_selinium:
 	python3.9 -m pip install -r requirements.txt
 	make build_backend
 	docker-compose up -d store-cache store-service store-web store-nginx
+	sleep 20
 	python3.9 -m robot atdd/ui-robot/shopping_cart_success.robot
 
 run_robot_requests:
@@ -13,6 +14,7 @@ run_robot_requests:
 	pip3 list | grep robot
 	make build_backend
 	docker-compose up -d store-cache store-service
+	sleep 20
 	python3.9 -m robot atdd/api-robot/shopping-cart-sucess.robot
 
 code_analysis_backend:
