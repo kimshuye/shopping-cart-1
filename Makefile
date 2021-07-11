@@ -3,17 +3,17 @@ backend: code_analysis_backend run_unittest_backend run_integratetest_backend bu
 
 run_robot_selinium:
 	/bin/bash
-	python3 -m pip3 install -r requirements.txt
+	python3.9 -m pip3 install -r requirements.txt
 	make build_backend
 	docker-compose up -d store-cache store-service store-web store-nginx
-	python3 -m robot atdd/ui-robot/shopping_cart_success.robot
+	python3.9 -m robot atdd/ui-robot/shopping_cart_success.robot
 
 run_robot_requests:
 	/bin/bash
 	pip3 list | grep robot
 	make build_backend
 	docker-compose up -d store-cache store-service
-	python3 -m robot atdd/api-robot/shopping-cart-sucess.robot
+	python3.9 -m robot atdd/api-robot/shopping-cart-sucess.robot
 
 code_analysis_backend:
 	docker network create mini-shopping-cart_default | true
