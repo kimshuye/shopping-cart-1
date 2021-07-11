@@ -3,7 +3,7 @@ backend: code_analysis_backend run_unittest_backend run_integratetest_backend bu
 
 run_robot_selinium:
 	/bin/bash
-	python3.9 -m pip3 install -r requirements.txt
+	python3.9 -m pip install -r requirements.txt
 	make build_backend
 	docker-compose up -d store-cache store-service store-web store-nginx
 	python3.9 -m robot atdd/ui-robot/shopping_cart_success.robot
