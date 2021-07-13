@@ -6,15 +6,13 @@ import (
 	"store-service/internal/order"
 	"store-service/internal/shipping"
 	"testing"
-
-	_ "github.com/go-sql-driver/mysql"
-
+	"github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
 	"github.com/stretchr/testify/assert"
 )
 
 func Test_ShippingRepository(t *testing.T) {
-	connection, err := sqlx.Connect("mysql", "sealteam:sckshuhari@(localhost:3306)/toy")
+	connection, err := sqlx.Connect("mysql", "sealteam:sckshuhari@(store-database:3306)/toy")
 	if err != nil {
 		t.Fatalf("cannot tearup data err %s", err)
 	}

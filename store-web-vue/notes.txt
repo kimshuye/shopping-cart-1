@@ -1,0 +1,164 @@
+
+Feature : Product list
+
+เข้าสุ่ url ที่ /Product-list
+จะเจอหน้า และข้อความ Toys ,id=productList
+
+หน้านี้ ประกอบไปด้วย
+
+Label Select age , for=inputAge
+Selectbox age , id=inputAge
+
+Options age
+id      text
+aSelect Choose
+a1      less 6 m
+a2      7-12 m
+a3      1-2 y
+a4      3-6 y
+a5      more 6 y
+a6      All ages
+
+Label Select gender , for=inputGender
+Selectbox gender , id=inputGender
+
+Options gender
+id      text
+gSelect Choose
+g1      girl
+g2      boy
+g3      unisex
+
+Product list
+    Product item1
+        Product name:       Balance Training Bicycle
+        Price:              119.95
+        view more <button>: viewMore-1
+        age <hidden>:       a1
+        gender <hidden>:    g1
+    Product item2
+        Product name:       43 Piece Dinner Set
+        Price:              12.95
+        view more <button>: viewMore-2
+        age <hidden>:       a2
+        gender <hidden>:    g2
+    Product item3
+        Product name:       Horses and Unicorns Set
+        Price:              24.95
+        view more <button>: viewMore-3
+        age <hidden>:       a3
+        gender <hidden>:    g3
+    Product item4
+        Product name:       Hoppity Ball 26 inch
+        Price:              29.95
+        view more <button>: viewMore-4
+        age <hidden>:       a4
+        gender <hidden>:    g1
+    Product item5
+        Product name:       Sleeping Queens Board Game
+        Price:              12.95
+        view more <button>: viewMore-5
+        age <hidden>:       a5
+        gender <hidden>:    g2
+    Product item6
+        Product name:       Princess Palace
+        Price:              24.95
+        view more <button>: viewMore-6
+        age <hidden>:       a6
+        gender <hidden>:    g3
+
+
+    Product item7
+        Product name:       Best Friends Forever Magnetic Dress Up
+        Price:              24.95
+        view more <button>: viewMore-7
+        age <hidden>:       a7
+        gender <hidden>:    g1
+    Product item8
+        Product name:       City Gargage Truck Lego
+        Price:              19.95
+        view more <button>: viewMore-8
+        age <hidden>:       a8
+        gender <hidden>:    g2
+    Product item9
+        Product name:       Kettrike Tricycle
+        Price:              249.95
+        view more <button>: viewMore-9
+        age <hidden>:       a9
+        gender <hidden>:    g3
+    Product item10
+        Product name:       Princess Training Bicycle
+        Price:              119.95
+        view more <button>: viewMore-10
+        age <hidden>:       a10
+        gender <hidden>:    g1
+    Product item11
+        Product name:       Earth DVD Game
+        Price:              34.99
+        view more <button>: viewMore-11
+        age <hidden>:       a11
+        gender <hidden>:    g2
+    Product item12
+        Product name:       Twilight Board Game
+        Price:              24.95
+        view more <button>: viewMore-12
+        age <hidden>:       a12
+        gender <hidden>:    g3
+
+
+
+
+Feature : Select age from Product list
+
+Search <button>, id=search
+
+สามารถคลิก ปุ่ม Search เพื่อ filter Product item ตามการเลือกของ ช่วงอายุ(age) 
+
+
+
+Feature : Select gender from Product list
+
+Search <button>, id=search
+
+สามารถคลิก ปุ่ม Search เพื่อ filter Product item ตามการเลือกของ เพศ(gender)
+
+
+
+Feature : Select age and gender from Product list
+
+Search <button>, id=search
+
+สามารถคลิก ปุ่ม Search เพื่อ filter Product item ตามการเลือกของ ช่วงอายุ(age) และ(หรือ) เพศ(gender)
+
+
+Feature : Click Product item to Detail
+
+เข้าสุ่ url ที่ /Product-list
+จะเจอหน้า และข้อมความ Select Toy
+
+คลิกปุ่ม View more ของ Product item10
+
+id=1
+
+เข้าสู่ url ที่ /Product-detail/{id}
+
+จะพบรายละเอียดดังนี้
+
+Elements                        Text
+Product name <Label>:           43 Piece dinner Set
+Product image <img>:            https://i.pinimg.com/474x/17/43/2f/17432f12ec88c0d0ea3d0cffc69d25ce.jpg
+Product Brand <Label>:          CoolKidz
+Product Gender <Label>:         girl
+Product Age <Label>:            less 6 m
+Product Price <Label>:          12.95 USD
+Product Quantity <Label>:
+Product Quantity <inputbox>:
+,id=productQuantity             0
+
+Add to Cart <button>:
+,id=addToCart                   Add to Cart
+
+
+
+
+

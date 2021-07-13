@@ -1,0 +1,49 @@
+
+
+name: CI/CD Frontend Vue
+
+on:
+  push:
+    branches:
+    # - master
+    - feature/cicd
+
+env:
+  DOC_HUB_USER: ${{ secrets.DOC_HUB_USER }}
+  DOC_HUB_PASS: ${{ secrets.DOC_HUB_PASS }}
+
+jobs:
+
+  analysis:
+    runs-on: ubuntu-latest
+    name: analysis testing
+    strategy:
+      matrix:
+        node-version: [14.15.1]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install dependency
+      run: cd store-web-vue && npm install
+    - name: code analysis
+      run: cd store-web-vue && npm run lint
+
+  unittest:
+    runs-on: ubuntu-latest
+    name: unittest testing
+    strategy:
+      matrix:
+        node-version: [14.15.1]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install dependency
+      run: cd store-web-vue && npm install
+    - name: run unittest
+      run: cd store-web-vue && npm run test:unit

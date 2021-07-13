@@ -10,6 +10,7 @@ services:
       - "8000:8000"
     depends_on:
       - store-database
+      - store-cache
     restart: always
     environment: 
       - TEST_MODE=true
@@ -32,18 +33,26 @@ services:
     volumes:
       - ./tearup/:/docker-entrypoint-initdb.d/
     ports:
-      - "3306:3306"
+      - "3307:3306"
 
   store-web:
     image: sckseal/toy-store-web:0.0.1
     container_name: store-web
     build:
       context: front-end
-    ports:
-      - "3000:3000"
+    # ports:
+    #   - "3000:3000"
+
+  # store-web-vue:
+  #   # image: sckseal/toy-store-web-vue:0.0.1
+  #   container_name: store-web-vue
+  #   build:
+  #     context: store-web-vue
+  #   # ports:
+  #   #   - "8080:80"
 
   store-nginx:
-    image: sckseal/toy-store-nginx:0.0.1
+    # image: sckseal/toy-store-nginx:0.0.1
     container_name: store-nginx
     restart: always
     build:
@@ -52,6 +61,7 @@ services:
     depends_on:
       - store-service
       - store-web
+      # - store-web-vue
     ports:
       - "80:80"
 

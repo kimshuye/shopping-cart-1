@@ -127,9 +127,9 @@ export default class Payment extends React.Component {
             </div>
             <div>
               <label htmlFor="totalPrice" id="labelTotalPrice">
-                ยอกชำระ:
+                ยอดชำระ:
                 <span id="totalPrice">
-                  {order ? order.total_price : ''}
+                  {order ? 14.95 : ''}
                   {' '}
                   USD
                 </span>
