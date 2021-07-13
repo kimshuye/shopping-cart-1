@@ -2,14 +2,14 @@
 backend: code_analysis_backend run_unittest_backend run_integratetest_backend build_backend start_service run_integratetest_backend_by_robot stop_service
 
 run_robot_selinium:
-	python3.9 -m pip install -r requirements.txt
+	python3 -m pip install -r requirements.txt
 	sleep 20
-	python3.9 -m robot atdd/ui-robot/shopping_cart_success.robot
+	python3 -m robot atdd/ui-robot/shopping_cart_success.robot
 
 run_robot_requests:
-	python3.9 -m pip install -r requirements.txt
+	python3 -m pip install -r requirements.txt
 	sleep 20
-	python3.9 -m robot atdd/api-robot/shopping-cart-sucess.robot
+	python3 -m robot atdd/api-robot/shopping-cart-sucess.robot
 
 code_analysis_backend:
 	docker network create mini-shopping-cart_default | true
